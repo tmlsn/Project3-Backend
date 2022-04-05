@@ -1,3 +1,3 @@
-const foo = 'fighters foreva'
+const fo = 'fighters foreva'
 
-const bar = foo + 3
+const barrel = foo + 3
