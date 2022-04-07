@@ -6,6 +6,10 @@ const bandSchema = new Schema({
     type: String,
     required: true,
   },
+  style: {
+    type: String,
+    required: true,
+  },
   Members: [
       {
           Name: {
