@@ -18,7 +18,7 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { email, password } = rer.body
+  const { email, password } = req.body
 
   try {
     const user = await User.findOne( { email })
