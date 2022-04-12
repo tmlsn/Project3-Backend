@@ -6,11 +6,11 @@ const User = require('../models/User.model')
 const router = express.Router()
 
 router.post('/signup', async (req, res) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstName, lastName, email, password } = req.body;
   const passwordHash = await bcrypt.hash(password, 10);
   const user = await User.create({
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     email,
     password: passwordHash,
   });
@@ -48,7 +48,6 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     res.status(500).json(error)
   }
-  
 })
 
 module.exports = router;
