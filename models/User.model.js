@@ -19,6 +19,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  band: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Band",
+    
+  },
+  Venue: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Venue",
+    
+  },
 })
 
 const User = model('User', userSchema)

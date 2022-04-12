@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const { Schema, model} = mongoose;
 
 const venueSchema = new Schema({
+  createdBy: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "User",
+    required: true,
+  },
   name: {
     type: String,
     required: true,
