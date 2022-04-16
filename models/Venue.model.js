@@ -17,11 +17,11 @@ const venueSchema = new Schema({
   },
   style: {
     type: String,
-    required: true,
+    required: false,
   },
   schedule: {
     type: String,
-    required: true,
+    required: false,
   },
   capacity: {
     type: Number,

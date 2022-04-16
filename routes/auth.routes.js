@@ -31,6 +31,19 @@ router.post('/signup-artist', authenticate, async (req, res) => {
   res.status(200).json(artist);
 });
 
+router.post('/signup-venue', authenticate, async (req, res) => {
+  const { name, location, style, capacity } = req.body;
+
+  const artist = await Artist.create({
+    createdBy: req.jwtPayload.user._id,
+    name,
+    location,
+    style, 
+    capacity
+  });
+  res.status(200).json(artist);
+});
+
 router.post('/login', async (req, res) => {
   const { email, password } = req.body
 
