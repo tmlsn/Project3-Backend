@@ -1,7 +1,9 @@
 const express = require('express')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require('../models/User.model')
+const User = require('../models/User.model');
+const Artist = require('../models/Artist.model');
+const { authenticate } = require('../middlewares/jwt.middleware');
 
 const router = express.Router()
 
@@ -15,6 +17,18 @@ router.post('/signup', async (req, res) => {
     password: passwordHash,
   });
   res.status(200).json(user);
+});
+
+router.post('/signup-artist', authenticate, async (req, res) => {
+  const { name, style, location } = req.body;
+
+  const artist = await Artist.create({
+    createdBy: req.jwtPayload.user._id,
+    name,
+    style,
+    location,
+  });
+  res.status(200).json(artist);
 });
 
 router.post('/login', async (req, res) => {

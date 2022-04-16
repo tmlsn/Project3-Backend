@@ -4,8 +4,8 @@ const { Schema, model} = mongoose;
 const artistSchema = new Schema({
   createdBy: {
     type: mongoose.SchemaTypes.ObjectId,
-    ref: "User",
     required: true,
+    ref: "User",
   },
   name: {
     type: String,
@@ -19,15 +19,15 @@ const artistSchema = new Schema({
       {
           name: {
               type: String,
-              required: true,
+              required: false,
           },
           singer: {
               type: Boolean,
-              required: true,
+              required: false,
           },
           instrument: {
               type: String,
-              required: true,
+              required: false,
           },
       }
   ],
