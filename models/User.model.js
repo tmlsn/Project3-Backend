@@ -19,9 +19,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  band: {
+  artist: {
     type: mongoose.SchemaTypes.ObjectId,
-    ref: "Band",
+    ref: "Artist",
     
   },
   Venue: {

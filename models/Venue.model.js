@@ -29,6 +29,6 @@ const venueSchema = new Schema({
   },
 })
 
-const Venue = model('Venue', userSchema)
+const Venue = model('Venue', venueSchema)
 
 module.exports = Venue
