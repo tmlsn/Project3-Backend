@@ -15,11 +15,11 @@ const venueSchema = new Schema({
     type: String,
     required: true,
   },
-  Style: {
+  style: {
     type: String,
     required: true,
   },
-  Schedule: {
+  schedule: {
     type: String,
     required: true,
   },
@@ -29,6 +29,6 @@ const venueSchema = new Schema({
   },
 })
 
-const Venue = model('User', userSchema)
+const Venue = model('Venue', userSchema)
 
 module.exports = Venue

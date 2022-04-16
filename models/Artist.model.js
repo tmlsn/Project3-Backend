@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema, model} = mongoose;
 
-const bandSchema = new Schema({
+const artistSchema = new Schema({
   createdBy: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "User",
@@ -15,28 +15,28 @@ const bandSchema = new Schema({
     type: String,
     required: true,
   },
-  Members: [
+  members: [
       {
-          Name: {
+          name: {
               type: String,
               required: true,
           },
-          Singer: {
+          singer: {
               type: Boolean,
               required: true,
           },
-          Instrument: {
+          instrument: {
               type: String,
               required: true,
           },
       }
   ],
-  Location: {
+  location: {
     type: String,
     required: true,
   },
 })
 
-const Band = model('User', userSchema)
+const Artist = model('Artist', userSchema)
 
-module.exports = Band
+module.exports = Artist
