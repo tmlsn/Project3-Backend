@@ -7,10 +7,12 @@ const commentSchema = new Schema({
         required: true,
     },
     createdAt: {
-        type: new Date.now,
+        type: Date,
+        default: Date.now,
+        immutable: true,
     },
     editedAt:{
-        type: new Date,
+        type: Date,
     },
     user: {
         type: mongoose.SchemaTypes.ObjectId,
