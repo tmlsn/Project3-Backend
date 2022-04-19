@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require('../models/User.model');
 const Artist = require('../models/Artist.model');
 const { authenticate } = require('../middlewares/jwt.middleware');
+const Venue = require('../models/Venue.model');
 
 const router = express.Router()
 
@@ -34,14 +35,14 @@ router.post('/signup-artist', authenticate, async (req, res) => {
 router.post('/signup-venue', authenticate, async (req, res) => {
   const { name, location, style, capacity } = req.body;
 
-  const artist = await Artist.create({
+  const venue = await Venue.create({
     createdBy: req.jwtPayload.user._id,
     name,
     location,
     style, 
     capacity
   });
-  res.status(200).json(artist);
+  res.status(200).json(venue);
 });
 
 router.post('/login', async (req, res) => {
