@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const { Schema, model} = mongoose;
 
 const userSchema = new Schema({
+  profilePicture: {
+    type: Image,
+    default: 'https://www.cregybad.org/wp-content/uploads/2017/10/user.png',
+  },
   firstName: {
     type: String,
     required: true,
