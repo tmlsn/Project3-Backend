@@ -59,3 +59,5 @@ router.get("/:id", async (req, res) => {
       res.status(400).json("unauthorized");
     }
   });
+
+  module.exports = router;
