@@ -39,4 +39,22 @@ router.post("/add-comment", async (req, res) => {
     }
   });
 
+  //like a comment by id
+  router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const comment = await Comment.findById(id);
+    comment.thumbsUp += 1
+    comment = await Comment.save();
+    res.status(200).json(comment);
+  });
+
+  //unlike a post by id
+  router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const comment = await Comment.findById(id);
+    comment.thumbsUp -= 1
+    comment = await Comment.save();
+    res.status(200).json(comment);
+  });
+
   module.exports = router;

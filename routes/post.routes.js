@@ -60,4 +60,22 @@ router.get("/:id", async (req, res) => {
     }
   });
 
+  //like a post by id
+  router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    post.thumbsUp += 1
+    post = await Post.save();
+    res.status(200).json(post);
+  });
+
+  //unlike a post by id
+  router.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    post.thumbsUp -= 1
+    post = await Post.save();
+    res.status(200).json(post);
+  });
+
   module.exports = router;
