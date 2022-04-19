@@ -1,11 +1,7 @@
 const mongoose = require('mongoose')
 const {Schema, model} = mongoose
 
-const postSchema = new Schema({
-    title: {
-        type: String,
-        required: true,
-    },
+const commentSchema = new Schema({
     content: {
         type: String,
         required: true,
@@ -23,6 +19,6 @@ const postSchema = new Schema({
     }
 });
 
-const Post = model('Post', postSchema)
+const Comment = model('Comment', commentSchema)
 
-module.exports = Post
+module.exports = Comment
