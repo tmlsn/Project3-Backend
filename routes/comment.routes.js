@@ -5,7 +5,7 @@ const router = express.Router()
 
 //create a comment
 router.post("/add-comment", async (req, res) => {
-    const { content } = req.body.content;
+    const { content } = req.body;
     const { createdAt } = new Date.now
     const { user } = req.jwtPayload.user._id
     const comment = await Comment.create({content, createdAt, user})
