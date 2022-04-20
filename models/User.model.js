@@ -3,7 +3,7 @@ const { Schema, model} = mongoose;
 
 const userSchema = new Schema({
   profilePicture: {
-    type: Image,
+    type: String,
     default: 'https://www.cregybad.org/wp-content/uploads/2017/10/user.png',
   },
   firstName: {

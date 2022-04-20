@@ -6,9 +6,9 @@ const router = express.Router()
 //create a comment
 router.post("/add-comment", async (req, res) => {
     const { content } = req.body;
-    const { createdAt } = new Date.now
-    const { user } = req.jwtPayload.user._id
-    const comment = await Comment.create({content, createdAt, user})
+    const { createdAt } = Date.now()
+    /* const { user } = req.jwtPayload.user._id */
+    const comment = await Comment.create({content, createdAt, user: req.jwtPayload.user._id})
     res.status(200).json(comment)
 });
   
@@ -31,7 +31,7 @@ router.post("/add-comment", async (req, res) => {
     let comment = await Comment.findById(id);
     if (comment.user.toString() === req.jwtPayload.user._id) {
       comment.content = content;
-      comment.editedAt = new Date.now
+      comment.editedAt = Date.now()
       comment = await Post.save();
       res.status(200).json(comment);
     } else {
