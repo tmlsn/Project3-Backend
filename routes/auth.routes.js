@@ -33,13 +33,13 @@ router.post('/signup-artist', authenticate, async (req, res) => {
 });
 
 router.post('/signup-venue', authenticate, async (req, res) => {
-  const { name, location, style, capacity } = req.body;
+  const { name, description, location, capacity } = req.body;
 
   const venue = await Venue.create({
     createdBy: req.jwtPayload.user._id,
     name,
+    description, 
     location,
-    style, 
     capacity
   });
   res.status(200).json(venue);
@@ -76,6 +76,12 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     res.status(500).json(error)
   }
+})
+
+router.get('/verify', authenticate, (req, res) => {
+  res.status(200).json({
+    user: req.jwtPayload.user,
+  })
 })
 
 module.exports = router;
