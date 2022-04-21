@@ -22,6 +22,10 @@ const postSchema = new Schema({
         type: mongoose.SchemaTypes.ObjectId,
         required: true,
         ref:'user',
+    },
+    thumbsUp: {
+        type: Number,
+        default: 0,
     }
 });
 
