@@ -21,7 +21,7 @@ router.get("/my-posts", async (req, res) => {
 
 //get all posts
 router.get("/all-posts", async (req, res) => {
-    const allPosts = await Post.find().populate('user');
+    const allPosts = await Post.find()/* .populate('user') */;
     res.status(200).json(allPosts);
 });
 
