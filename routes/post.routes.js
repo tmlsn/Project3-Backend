@@ -5,7 +5,7 @@ const { authenticate } = require('../middlewares/jwt.middleware');
 const router = express.Router()
 
 //create a post
-router.post("/create-post", async (req, res) => {
+router.post("/create-post", authenticate, async (req, res) => {
     const { title, content } = req.body
     const { createdAt } = Date.now()
     /* const { user } = req.jwtPayload.user._id */
