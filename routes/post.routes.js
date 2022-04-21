@@ -1,5 +1,6 @@
 const express = require("express");
 const Post = require('../models/Post.model');
+const { authenticate } = require('../middlewares/jwt.middleware');
 
 const router = express.Router()
 
@@ -33,9 +34,12 @@ router.get("/:id", async (req, res) => {
   });
   
   // delete post by id
-  router.delete("/:id", async (req, res) => {
+  router.delete("/:id", authenticate ,async (req, res) => {
     const { id } = req.params;
+    console.log(id)
+    
     const post = await Post.findById(id);
+    console.log(post.user.toString(), req.jwtPayload.user._id)
     if (post.user.toString() === req.jwtPayload.user._id) {
       await Post.findByIdAndDelete(id);
       res.status(200).json(post);
