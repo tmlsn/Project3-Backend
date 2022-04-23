@@ -19,9 +19,10 @@ const commentSchema = new Schema({
         required: true,
         ref:'user',
     },
-    thumbsUp: {
-        type: Number,
-        default: 0,
+    likes: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        
+        ref:'user',
     }
 });
 
