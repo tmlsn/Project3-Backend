@@ -19,15 +19,16 @@ router.post("/add-comment/:postId", authenticate, async (req, res) => {
 });
 
 // get all the comments for one post
-router.get("/see-comments/:postId", async (req, res) => {
+router.get("/see-comments/:postId",authenticate, async (req, res) => {
   const { postId } = req.params;
+  console.log(postId)
   const postComments = await Comment.find({post: postId})
   res.status(200).json(postComments);
 })
 
 
   // delete comment by id
-  router.delete("/:id", async (req, res) => {
+  router.delete("/:id", authenticate, async (req, res) => {
     const { id } = req.params;
     const comment = await Comment.findById(id);
     if (comment.user.toString() === req.jwtPayload.user._id) {
@@ -39,14 +40,14 @@ router.get("/see-comments/:postId", async (req, res) => {
   });
   
   // edit comment by id
-  router.put("/:id", async (req, res) => {
+  router.put("/edit-comment/:id", authenticate, async (req, res) => {
     const { id } = req.params;
     const { content } = req.body;
     let comment = await Comment.findById(id);
     if (comment.user.toString() === req.jwtPayload.user._id) {
       comment.content = content;
       comment.editedAt = Date.now()
-      comment = await Post.save();
+      comment = await comment.save();
       res.status(200).json(comment);
     } else {
       res.status(400).json("unauthorized");
