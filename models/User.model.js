@@ -26,7 +26,6 @@ const userSchema = new Schema({
   artist: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Artist",
-    
   },
   Venue: {
     type: mongoose.SchemaTypes.ObjectId,
