@@ -17,12 +17,16 @@ const commentSchema = new Schema({
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         required: true,
-        ref:'user',
+        ref:'User',
     },
     likes: {
         type: [mongoose.SchemaTypes.ObjectId],
         
-        ref:'user',
+        ref:'User',
+    },
+    post: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref:'Post',
     }
 });
 
