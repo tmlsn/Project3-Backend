@@ -1,21 +1,25 @@
 const express = require("express");
 const Comment = require('../models/Comment.model');
+const Post = require('../models/Post.model');
+
+const { authenticate } = require('../middlewares/jwt.middleware');
 
 const router = express.Router()
 
 //create a comment
-router.post("add-comment/:postId", async (req, res) => {
+router.post("/add-comment/:postId", authenticate, async (req, res) => {
     const { content } = req.body;
-    const { postId } = req.params
+    const { postId } = req.params 
+    /* const postcom = await Post.findById(postId) */
     const { createdAt } = Date.now()
-    console.log(postId)
+    console.log( postId)
     /* const { user } = req.jwtPayload.user._id */
     const comment = await Comment.create({content, createdAt, user: req.jwtPayload.user._id, post: postId})
     res.status(200).json(comment)
 });
 
 // get all the comments for one post
-router.get("see-comments/:postId", async (req, res) => {
+router.get("/see-comments/:postId", async (req, res) => {
   const { postId } = req.params;
   const postComments = await Comment.find({post: postId})
   res.status(200).json(postComments);

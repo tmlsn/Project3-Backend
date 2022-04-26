@@ -26,6 +26,7 @@ const commentSchema = new Schema({
     },
     post: {
         type: mongoose.SchemaTypes.ObjectId,
+        required: true,
         ref:'Post',
     }
 });
