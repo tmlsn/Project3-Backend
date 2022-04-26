@@ -30,8 +30,11 @@ const userSchema = new Schema({
   Venue: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Venue",
-    
   },
+  details: {
+    type: Boolean, 
+    required: true
+  }
 })
 
 const User = model('User', userSchema)
