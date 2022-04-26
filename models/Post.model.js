@@ -21,16 +21,13 @@ const postSchema = new Schema({
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         required: true,
-        ref:'user',
+        ref:'User',
     },
     likes: {
         type: [mongoose.SchemaTypes.ObjectId],
-        ref:'user',
+        ref:'User',
     },
-    comments: {
-        type: [mongoose.SchemaTypes.ObjectId],
-        ref:'comment',
-    }
+    
 });
 
 const Post = model('Post', postSchema)

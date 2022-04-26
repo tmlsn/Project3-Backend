@@ -23,6 +23,9 @@ app.use('/auth', authRoutes);
 const postRoutes = require("./routes/post.routes");
 app.use('/post', authenticate, postRoutes);
 
+const commentRoutes = require("./routes/comment.routes");
+app.use('/comment', commentRoutes); 
+
 const concertRoutes = require("./routes/concert.routes");
 app.use('/concert', concertRoutes);
 
