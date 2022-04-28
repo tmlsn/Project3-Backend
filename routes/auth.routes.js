@@ -9,37 +9,47 @@ const Venue = require('../models/Venue.model');
 const router = express.Router()
 
 router.post('/signup', async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, details } = req.body;
   const passwordHash = await bcrypt.hash(password, 10);
   const user = await User.create({
     firstName,
     lastName,
     email,
     password: passwordHash,
+    details,
   });
   res.status(200).json(user);
 });
 
+router.post('/signup-details', authenticate, async (req, res) => {
+  
+
+  res.status(200).json('ok');
+});
+
 router.post('/signup-artist', authenticate, async (req, res) => {
-  const { name, style, location } = req.body;
+  const { name, style, description, contactInfo, location } = req.body;
 
   const artist = await Artist.create({
     createdBy: req.jwtPayload.user._id,
     name,
     style,
+    description,
+    contactInfo,
     location,
   });
   res.status(200).json(artist);
 });
 
 router.post('/signup-venue', authenticate, async (req, res) => {
-  const { name, description, location, capacity } = req.body;
+  const { name, description, location, contactInfo, capacity } = req.body;
 
   const venue = await Venue.create({
     createdBy: req.jwtPayload.user._id,
     name,
     description, 
     location,
+    contactInfo,
     capacity
   });
   res.status(200).json(venue);

@@ -19,9 +19,9 @@ const venueSchema = new Schema({
     type: String,
     required: false,
   },
-  schedule: {
+  contactInfo: {
     type: String,
-    required: false,
+    required: true,
   },
   capacity: {
     type: Number,

@@ -15,22 +15,14 @@ const artistSchema = new Schema({
     type: String,
     required: true,
   },
-  members: [
-      {
-          name: {
-              type: String,
-              required: false,
-          },
-          singer: {
-              type: Boolean,
-              required: false,
-          },
-          instrument: {
-              type: String,
-              required: false,
-          },
-      }
-  ],
+  description: {
+    type: String,
+    required: true,
+  },
+  contactInfo: {
+    type: String,
+    required: true,
+  },
   location: {
     type: String,
     required: true,
