@@ -4,7 +4,7 @@ const Comment = require('../models/Comment.model');
 const router = express.Router()
 
 //create a comment
-router.post("add-comment/:postId", async (req, res) => {
+router.post("/add-comment/:postId", async (req, res) => {
     const { content } = req.body;
     const { postId } = req.params
     const { createdAt } = Date.now()
