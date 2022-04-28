@@ -28,9 +28,10 @@ router.get("/see-comments/:postId",authenticate, async (req, res) => {
 
 
   // delete comment by id
-  router.delete("/:id", authenticate, async (req, res) => {
+  router.delete("/delete-comment/:id", authenticate, async (req, res) => {
     const { id } = req.params;
     const comment = await Comment.findById(id);
+    console.log('ffffffffffffffffffffffffffffffffffff', id, comment)
     if (comment.user.toString() === req.jwtPayload.user._id) {
       await Comment.findByIdAndDelete(id);
       res.status(200).json(comment);
@@ -43,6 +44,7 @@ router.get("/see-comments/:postId",authenticate, async (req, res) => {
   router.put("/edit-comment/:id", authenticate, async (req, res) => {
     const { id } = req.params;
     const { content } = req.body;
+    console.log('ffffffffffffffffffffffffffffffffffff', id)
     let comment = await Comment.findById(id);
     if (comment.user.toString() === req.jwtPayload.user._id) {
       comment.content = content;
