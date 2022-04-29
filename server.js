@@ -29,4 +29,7 @@ app.use('/comment', commentRoutes);
 const concertRoutes = require("./routes/concert.routes");
 app.use('/concert', concertRoutes);
 
+const profileRoutes = require("./routes/profile.routes");
+app.use('/profile', profileRoutes);
+
 app.listen(process.env.PORT);
