@@ -27,6 +27,42 @@ router.get("/venue/:id", authenticate, async (req, res) => {
   }
 });
 
+router.put("/artist/edit/:id", authenticate, async (req, res) => {
+  const { id } = req.params;
+  const { name, style, description, contactInfo, location } = req.body;
+  const user  = req.jwtPayload.user._id
+  let artist = await Artist.findOne({createdBy: id});
+  if (artist.createdBy.toString() === req.jwtPayload.user._id) {
+    artist.name = name;
+    artist.style = style;
+    artist.description = description
+    artist.contactInfo = contactInfo
+    artist.location = location
+    artist = await artist.save();
+    res.status(200).json(artist);
+  } else {
+    res.status(400).json("unauthorized");
+  }
+});
+
+router.put("/venue/edit/:id", authenticate, async (req, res) => {
+  const { id } = req.params;
+  const { name, location, description, contactInfo, capacity } = req.body;
+  const user  = req.jwtPayload.user._id
+  let venue = await Venue.findOne({createdBy: id});
+  if (venue.createdBy.toString() === req.jwtPayload.user._id) {
+    venue.name = name;
+    venue.location = location;
+    venue.description = description
+    venue.contactInfo = contactInfo
+    venue.capacity = capacity
+    venue = await venue.save();
+    res.status(200).json(venue);
+  } else {
+    res.status(400).json("unauthorized");
+  }
+});
+
 
 
 module.exports = router;
