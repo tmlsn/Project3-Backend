@@ -2,7 +2,8 @@ const express = require("express");
 const { authenticate } = require('../middlewares/jwt.middleware');
 const User = require("../models/User.model");
 const Artist = require('../models/Artist.model')
-const Venue = require('../models/Venue.model')
+const Venue = require('../models/Venue.model');
+const { findById } = require("../models/User.model");
 
 
 const router = express.Router()
@@ -62,6 +63,19 @@ router.put("/venue/edit/:id", authenticate, async (req, res) => {
     res.status(400).json("unauthorized");
   }
 });
+
+router.put("/:id", authenticate, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { details } = req.body
+    let user = await User.findById(id)
+    user.details = details
+    user = await user.save()
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(400).json("unauthorized");
+  }
+})
 
 
 

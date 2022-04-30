@@ -27,7 +27,7 @@ const commentRoutes = require("./routes/comment.routes");
 app.use('/comment', commentRoutes); 
 
 const concertRoutes = require("./routes/concert.routes");
-app.use('/concert', authenticate, concertRoutes);
+app.use('/concert', concertRoutes);
 
 const profileRoutes = require("./routes/profile.routes");
 app.use('/profile', authenticate, profileRoutes);
