@@ -15,11 +15,11 @@ const venueSchema = new Schema({
     type: String,
     required: true,
   },
-  style: {
+  description: {
     type: String,
     required: true,
   },
-  schedule: {
+  contactInfo: {
     type: String,
     required: true,
   },

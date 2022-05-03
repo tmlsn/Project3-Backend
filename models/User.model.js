@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const { Schema, model} = mongoose;
 
 const userSchema = new Schema({
+  profilePicture: {
+    type: String,
+    default: 'https://www.cregybad.org/wp-content/uploads/2017/10/user.png',
+  },
   firstName: {
     type: String,
     required: true,
@@ -22,13 +26,15 @@ const userSchema = new Schema({
   artist: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Artist",
-    
   },
   Venue: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "Venue",
-    
   },
+  details: {
+    type: Boolean, 
+    required: true
+  }
 })
 
 const User = model('User', userSchema)
