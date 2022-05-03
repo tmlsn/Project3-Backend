@@ -88,7 +88,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.get('/verify', authenticate, (req, res) => {
+router.post('/verify', authenticate, (req, res) => {
   res.status(200).json({
     user: req.jwtPayload.user
   })

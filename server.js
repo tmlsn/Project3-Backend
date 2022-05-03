@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.send('bandemonium app')
 })
 
 const authRoutes = require("./routes/auth.routes");
