@@ -22,7 +22,7 @@ router.post("/add-comment/:postId", authenticate, async (req, res) => {
 router.get("/see-comments/:postId",authenticate, async (req, res) => {
   const { postId } = req.params;
   console.log(postId)
-  const postComments = await Comment.find({post: postId})
+  const postComments = await Comment.find({post: postId}).populate('user')
   res.status(200).json(postComments);
 })
 

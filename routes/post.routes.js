@@ -11,7 +11,7 @@ router.post("/create-post", authenticate, async (req, res) => {
     const { createdAt } = Date.now()
     const userId = req.jwtPayload.user._id
     const user = await User.findById(userId)
-    const post = await Post.create({title, content, createdAt, user: user._id})
+    const post = await Post.create({title, content, createdAt, user: user})
     res.status(200).json(post)
 });
 
@@ -24,14 +24,15 @@ router.get("/my-posts", async (req, res) => {
 
 //get all posts
 router.get("/all-posts", async (req, res) => {
-    const allPosts = await Post.find()/* .populate('user') */;
+    const allPosts = await Post.find().populate('user') ;
     res.status(200).json(allPosts);
 });
 
 // get one post by id
 router.get("/:id", async (req, res) => {
     const { id } = req.params;
-    const post = await Post.findById(id);
+    const post = await Post.findById(id).populate('user');
+    console.log('ooooooooooooooooooooooooooooooooooo', post)
     res.status(200).json(post);
   });
   
