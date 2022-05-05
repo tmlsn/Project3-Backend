@@ -32,4 +32,10 @@ app.use('/concert', concertRoutes);
 const profileRoutes = require("./routes/profile.routes");
 app.use('/profile', authenticate, profileRoutes);
 
+const artistRoutes = require("./routes/artist.routes");
+app.use('/artist', authenticate, artistRoutes);
+
+const venueRoutes = require("./routes/venue.routes");
+app.use('/venue', authenticate, venueRoutes);
+
 app.listen(process.env.PORT);
