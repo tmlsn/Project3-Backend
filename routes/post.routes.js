@@ -32,7 +32,6 @@ router.get("/all-posts", async (req, res) => {
 router.get("/:id", async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id).populate('user');
-    console.log('ooooooooooooooooooooooooooooooooooo', post)
     res.status(200).json(post);
   });
   
